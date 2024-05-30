@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Highlighter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p.description {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            resize: none;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .eng {
+            color: blue;
+        }
+        .rus {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Highlighter</h1>
+        <p class="description">This tool highlights English letters in blue and Russian letters in red.</p>
+        <textarea id="inputText" placeholder="Вставьте ваш текст здесь..."></textarea>
+        <button onclick="highlightText()">Highlight Text</button>
+        <div id="outputText" class="output"></div>
+    </div>
+
+    <script>
+        function highlightText() {
+            const inputText = document.getElementById('inputText').value;
+            const engPattern = /[A-Za-z]/g;
+            const rusPattern = /[А-Яа-я]/g;
+
+            let highlightedText = inputText.replace(engPattern, match => `<span class="eng">${match}</span>`);
+            highlightedText = highlightedText.replace(rusPattern, match => `<span class="rus">${match}</span>`);
+
+            document.getElementById('outputText').innerHTML = highlightedText;
+        }
+    </script>
+</body>
+</html>
